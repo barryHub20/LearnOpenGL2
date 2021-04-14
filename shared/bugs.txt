@@ -1,0 +1,25 @@
+Fix for Android:
+-not using OpenGL ES 3.0
+	-FIXED: specify in shader to use opengl es 3.0
+-use c string for log function input
+-LoadMaterial() called multiple times
+	-seems to be a false alarm
+TexCoord doesn't seem to be working
+	-use layout specifier in vertex shader
+MAT_FLOOR_TILES work but MAT_WOODEN_CRATE doesn't
+	-png doesn't seem to work
+	-FIXED: glTexImage2D param 3 for png types pls specify GL_RGBA instead of GL_RGB
+Specular not working, seems like POW with shininess portion giving weird output
+	-material.shininess is 0.0 on Android, seems like there are issues with float uniforms
+	-FIXED: float uniform cannot be in a struct, moved to standalone float
+Specular light appears blocky
+	-set fragment shader to use highdp float
+
+Fix for Windows:
+-mem. leak detected!!
+	-for now assume it's false positives (it can happen). The detected leaks are determined to be listed after 
+	all the code in main()
+
+For both:
+-OSEngine and other singletons to use static vars for instance
+https://stackoverflow.com/questions/30602861/singleton-is-there-a-memory-leak

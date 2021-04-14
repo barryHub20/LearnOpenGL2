@@ -1,0 +1,43 @@
+Prepare a newly generated NDK project into a OpenGL project:
+
+- Create a NativeActivity at java/com.example.learnopengl
+- Update AndroidManifest.xml in app/manifests to:
+	-use the NativeActivity as MAIN activity (delete MainActivity from the manifest)
+	-add the hasCode flag
+	-add uses-feature opengl es 3.0 and permission to access external drive
+
+-Move our CMakeLists.txt to app so that it can be used to bound multiple c++ libs
+-update build.gradle to reflect the CMakeLists.txt new location
+
+-In CMakeLists.txt build the following libraries to .so:
+	-app-glue
+	-cpufeatures
+
+-create ndk_helper lib
+-create native-lib and build it with all the files in shared/Source
+
+-target include directories (just like in VS letting compiler know where to include files, shown below are what VS included):
+	-$(SolutionDir)..\shared\includes
+	-$(SolutionDir)\includes
+	-$(SolutionDir)..\shared\Source
+
+-Build static dependency-lib at start of cmake and link with app-glue and cpufeatures
+(this allows subsequent libs to access it's functionality)
+
+-Copy over NativeActivity and helper/NDKHelper
+
+-Move the following files to src/main/cpp and change any definitions to our project's:
+-Main.cpp
+
+ndk_helper/GLContext.cpp
+-change all ES2 to ES3
+
+Notes:
+-Take note src/main/assets are packed into apk
+-Mi Mix 2 CPU is Snapdragon 835, ARM based
+
+Issues:
+-Camera::UpdateInput() inputList sometimes activates
+
+Todo:
+-Make Android_dep lib and use separate cmake for Android_dep

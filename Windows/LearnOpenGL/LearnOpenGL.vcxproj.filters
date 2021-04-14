@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{2fe8f3d0-8cb5-4327-97d7-ceb1fd3815b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{fc1e2a72-149d-4dc8-b921-d31a4d0d501d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{db11b643-9031-44be-bbd2-1d4a19ef8584}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{7fd79062-9e9a-43c5-b22f-a513d0f478ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mesh">
+      <UniqueIdentifier>{f5334cb7-d79e-4fe2-912b-9dbaf3f70488}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Texture">
+      <UniqueIdentifier>{a66dc0cc-4012-44de-b223-fe13c37af58f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{6dd307b4-0f40-4c54-b261-d100e1258f99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Material">
+      <UniqueIdentifier>{5550cc49-5f4c-41f8-95b3-eb0f9afb4b3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WindowsPlatform">
+      <UniqueIdentifier>{51fe4851-b060-4225-843d-63d6312dfc39}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OSEngine.cpp">
+      <Filter>WindowsPlatform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\Source\engine\Engine.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\Source\camera\Camera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\Source\material\Material.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\Source\material\MaterialBuilder.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\Source\material\MaterialColor.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\Source\material\MaterialLightMap.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\Source\mesh\Mesh.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\Source\mesh\MeshBuilder.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\Source\object\GameObject.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\Source\scenes\Scene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\Source\scenes\SceneLightMap.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\Source\shader\Shader.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\Source\shader\ShaderManager.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\Source\texture\TextureBuilder.cpp">
+      <Filter>Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shared\Source\Utility.cpp">
+      <Filter>WindowsPlatform</Filter>
+    </ClCompile>
+    <ClCompile Include="glad.c">
+      <Filter>WindowsPlatform</Filter>
+    </ClCompile>
+    <ClCompile Include="stb_image.cpp">
+      <Filter>WindowsPlatform</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\shared\Source\engine\Engine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\Source\camera\Camera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\Source\material\Material.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\Source\material\MaterialBuilder.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\Source\material\MaterialColor.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\Source\material\MaterialLightMap.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\Source\mesh\Mesh.h">
+      <Filter>Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\Source\mesh\MeshBuilder.h">
+      <Filter>Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\Source\object\GameObject.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\Source\scenes\Scene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\Source\scenes\SceneLightMap.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\Source\shader\Shader.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\Source\shader\ShaderManager.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\Source\texture\TextureBuilder.h">
+      <Filter>Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\shared\Source\Utility.h">
+      <Filter>WindowsPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Includes\STB\stb_image.h">
+      <Filter>WindowsPlatform</Filter>
+    </ClInclude>
+    <ClInclude Include="OSEngine.h">
+      <Filter>WindowsPlatform</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

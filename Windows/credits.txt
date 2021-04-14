@@ -1,0 +1,5 @@
+Tutorials and codesamples that helped:
+Providing a base and headstart for Android porting:
+-https://github.com/android/ndk-samples/tree/main/teapots/classic-teapot
+OpenGL tutorial:
+-https://learnopengl.com/
