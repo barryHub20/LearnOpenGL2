@@ -1,0 +1,2 @@
+Linux notes:
+-we are not supposed to change default python to 3 as it will cause the vm problems

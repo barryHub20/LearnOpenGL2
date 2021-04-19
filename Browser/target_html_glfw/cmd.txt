@@ -1,0 +1,12 @@
+emcc glfw3.c -o index.html -s FULL_ES3=1 -s USE_GLFW=3 -s WASM=1
+
+in glfw3.c add: define CLIENT_API GLFW_OPENGL_ES_API
+
+Working: glfwWindowResize(..) confirmed to work
+
+Cmake ver also working!
+However if RELEASE mode the glfw window resize won't take effect, most likely release code isn't so lenient on assertion errors
+
+tested:
+if ommit SET(linkFlags "-s FULL_ES3=1") and SET(linkFlags "-s USE_GLFW=3") will lead to glfw undefined errors
+if ommit ${CMAKE_CURRENT_SOURCE_DIR}/glad/include will lead to glad undefined error
