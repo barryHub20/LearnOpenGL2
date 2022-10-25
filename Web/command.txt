@@ -2,4 +2,4 @@ emcc opengl_demo/src/legacy_opengl_ex.c -s LEGACY_GL_EMULATION=1 -sUSE_SDL=2 -lS
 
 emcc opengl_demo/src/glfw3_webgl2_ver.cpp -o hello.html -s USE_WEBGL2=1 -s USE_GLFW=3 -s WASM=1 -std=c++1z
 
-emcc ../../../LearnOpenGL/Main.cpp -o hello.html -s USE_WEBGL2=1 -s USE_GLFW=3 -s WASM=1 -std=c++1z
+emcc ../../../LearnOpenGL/Main.cpp -I../../../../shared/Includes -I../../../../shared/Source -o hello.html -s USE_WEBGL2=1 -s USE_GLFW=3 -s WASM=1 -std=c++1z

@@ -7,6 +7,7 @@
 #include <vector>
 #include <algorithm>
 #include <stdlib.h>     /* srand, rand */
+#include <stdio.h>
 #include <time.h>       /* time */
 #include <iterator>
 #include <bitset>
@@ -34,6 +35,12 @@
 #include <GLContext.h>
 // texture loading
 #include <STB/stb_image.h>
+# elif __EMSCRIPTEN__
+#include <emscripten.h>
+#define GL_GLEXT_PROTOTYPES
+#define EGL_EGLEXT_PROTOTYPES
+#include <GL/gl.h>	// replaces GLAD
+#include <GLFW/glfw3.h>
 #endif
 // glm
 #include <glm/glm.hpp>

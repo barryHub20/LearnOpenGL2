@@ -1,9 +1,5 @@
-#include <GLFW/glfw3.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "../../shared/Source/Utility.h"
 static GLFWwindow* window;
-static int windowsWidth = 1280;
-static int windowsHeight = 720;
 
 static void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
