@@ -41,6 +41,9 @@
 #define EGL_EGLEXT_PROTOTYPES
 #include <GL/gl.h>	// replaces GLAD
 #include <GLFW/glfw3.h>
+// texture loading
+#define STB_IMAGE_IMPLEMENTATION
+#include <STB/stb_image.h>
 #endif
 // glm
 #include <glm/glm.hpp>
