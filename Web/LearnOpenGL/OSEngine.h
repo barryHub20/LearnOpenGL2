@@ -22,6 +22,7 @@ private:
 	void initOpenGLSettings();
 
 	// render loop
+	void mainLoop();
 	void renderLoop();
 
 	// exit

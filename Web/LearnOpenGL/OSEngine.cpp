@@ -49,32 +49,34 @@ void OSEngine::initOpenGLSettings()
 	glFrontFace(GL_CW);
 }
 
+void OSEngine::mainLoop()
+{
+	// delta time
+	float currFrame = glfwGetTime();
+	deltaTime = currFrame - lastFrame;
+	lastFrame = currFrame;
+
+	// input
+	processInput(window);
+
+	// engine update
+	Engine::instance()->Update(inputList, deltaTime);
+	Engine::instance()->Draw();
+
+	// read: double buffers to prevent flickering issues due to physical constraints of drawing a buffer to screen
+	// resulting in flickering
+	glfwSwapBuffers(window);
+
+	// check if events triggered (inputs etc), then updates windows state and activate callbacks
+	glfwPollEvents();
+}
+
 void OSEngine::renderLoop()
 {
 	// OSEngine vars
 	lastFrame = glfwGetTime();
 
-	while (!glfwWindowShouldClose(window))
-	{
-		// delta time
-		float currFrame = glfwGetTime();
-		deltaTime = currFrame - lastFrame;
-		lastFrame = currFrame;
-
-		// input
-		processInput(window);
-
-		// engine update
-		Engine::instance()->Update(inputList, deltaTime);
-		Engine::instance()->Draw();
-
-		// read: double buffers to prevent flickering issues due to physical constraints of drawing a buffer to screen
-		// resulting in flickering
-		glfwSwapBuffers(window);
-
-		// check if events triggered (inputs etc), then updates windows state and activate callbacks
-		glfwPollEvents();
-	}
+	emscripten_set_main_loop(mainLoop, 0, true);
 }
 
 int OSEngine::terminateOpenGL()
