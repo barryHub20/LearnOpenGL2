@@ -54,7 +54,7 @@ using namespace std;
 #define PI 3.141592653589793
 static int windowsWidth = 1280;
 static int windowsHeight = 720;
-#ifdef PLATFORM_WINDOWS
+#if defined(PLATFORM_WINDOWS) || defined(__EMSCRIPTEN__)
 const static string assetsPath = "../../shared/Assets";
 const static string shaderspath = "../../shared/Shaders";
 #elif PLATFORM_ANDROID
