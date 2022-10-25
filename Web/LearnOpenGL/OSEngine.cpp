@@ -49,6 +49,11 @@ void OSEngine::initOpenGLSettings()
 	glFrontFace(GL_CW);
 }
 
+void OSEngine::loopCallback()
+{
+	OSEngine::instance()->mainLoop();
+}
+
 void OSEngine::mainLoop()
 {
 	// delta time
@@ -76,7 +81,7 @@ void OSEngine::renderLoop()
 	// OSEngine vars
 	lastFrame = glfwGetTime();
 
-	emscripten_set_main_loop(mainLoop, 0, true);
+	emscripten_set_main_loop(loopCallback, 0, true);
 }
 
 int OSEngine::terminateOpenGL()
@@ -121,10 +126,10 @@ void OSEngine::processInput(GLFWwindow* window)
 	}
 
 	// process inputs
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+	/*if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 	{
 		glfwSetWindowShouldClose(window, true);
-	}
+	}*/
 }
 
 void OSEngine::mouse_callback(GLFWwindow* window, double xpos, double ypos)
