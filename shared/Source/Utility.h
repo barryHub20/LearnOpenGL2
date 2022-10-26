@@ -23,8 +23,6 @@
 // OpenGL specific
 #include <glad/glad.h>  // !include before GLFW!
 #include <GLFW/glfw3.h>
-// texture loading
-#include <STB/stb_image.h>
 #elif PLATFORM_ANDROID
 // OpenGL ES and GL context
 #include <EGL/egl.h>
@@ -33,17 +31,12 @@
 #include <android/log.h>
 #include <JNIHelper.h>
 #include <GLContext.h>
-// texture loading
-#include <STB/stb_image.h>
-# elif __EMSCRIPTEN__
+#elif __EMSCRIPTEN__
 #include <emscripten.h>
 #define GL_GLEXT_PROTOTYPES
 #define EGL_EGLEXT_PROTOTYPES
 #include <GL/gl.h>	// replaces GLAD
 #include <GLFW/glfw3.h>
-// texture loading
-#define STB_IMAGE_IMPLEMENTATION
-#include <STB/stb_image.h>
 #endif
 // glm
 #include <glm/glm.hpp>
@@ -54,12 +47,15 @@ using namespace std;
 #define PI 3.141592653589793
 static int windowsWidth = 1280;
 static int windowsHeight = 720;
-#if defined(PLATFORM_WINDOWS) || defined(__EMSCRIPTEN__)
+#ifdef PLATFORM_WINDOWS
 const static string assetsPath = "../../shared/Assets";
 const static string shaderspath = "../../shared/Shaders";
 #elif PLATFORM_ANDROID
 const static string assetsPath = "Assets";
 const static string shaderspath = "Shaders";
+#elif __EMSCRIPTEN__
+const static string assetsPath = "LearnOpenGL/Assets";
+const static string shaderspath = "LearnOpenGL/Shaders";
 #endif
 
 // enums

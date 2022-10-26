@@ -1,4 +1,6 @@
 #include "Utility.h"
+// texture loading
+#include <STB/stb_image.h>
 
 string fileToShaderString(string filename)
 {
