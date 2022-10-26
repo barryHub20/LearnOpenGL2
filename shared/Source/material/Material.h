@@ -13,7 +13,7 @@ protected:
 
 public:
 	Material();
-	~Material();
+	virtual ~Material();
 
 	// please define your own Init
 	void Init(SHADER_TYPES shaderType);

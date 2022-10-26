@@ -10,7 +10,7 @@ class Scene
 {
 public:
 	Scene();
-	~Scene();
+	virtual ~Scene();
 
 	virtual void Init() = 0;
 	virtual void Update(bool inputList[INPUT_TOTAL], float deltaTime) = 0;
