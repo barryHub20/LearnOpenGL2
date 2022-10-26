@@ -1,4 +1,6 @@
 #include "Engine.h"
+// texture loading
+#include <STB/stb_image.h>
 Engine* Engine::engine = NULL;
 
 void Engine::onWindowSizeUpdate(int width, int height)

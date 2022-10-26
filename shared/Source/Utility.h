@@ -7,6 +7,7 @@
 #include <vector>
 #include <algorithm>
 #include <stdlib.h>     /* srand, rand */
+#include <stdio.h>
 #include <time.h>       /* time */
 #include <iterator>
 #include <bitset>
@@ -22,8 +23,6 @@
 // OpenGL specific
 #include <glad/glad.h>  // !include before GLFW!
 #include <GLFW/glfw3.h>
-// texture loading
-#include <STB/stb_image.h>
 #elif PLATFORM_ANDROID
 // OpenGL ES and GL context
 #include <EGL/egl.h>
@@ -32,8 +31,12 @@
 #include <android/log.h>
 #include <JNIHelper.h>
 #include <GLContext.h>
-// texture loading
-#include <STB/stb_image.h>
+#elif __EMSCRIPTEN__
+#include <emscripten.h>
+#define GL_GLEXT_PROTOTYPES
+#define EGL_EGLEXT_PROTOTYPES
+#include <GL/gl.h>	// replaces GLAD
+#include <GLFW/glfw3.h>
 #endif
 // glm
 #include <glm/glm.hpp>
@@ -50,6 +53,9 @@ const static string shaderspath = "../../shared/Shaders";
 #elif PLATFORM_ANDROID
 const static string assetsPath = "Assets";
 const static string shaderspath = "Shaders";
+#elif __EMSCRIPTEN__
+const static string assetsPath = "LearnOpenGL/Assets";
+const static string shaderspath = "LearnOpenGL/Shaders";
 #endif
 
 // enums

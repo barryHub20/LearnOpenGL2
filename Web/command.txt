@@ -1,0 +1,10 @@
+emcc opengl_demo/src/legacy_opengl_ex.c -s LEGACY_GL_EMULATION=1 -sUSE_SDL=2 -lSDL2 -sUSE_SDL_IMAGE=2 -sSDL2_IMAGE_FORMATS=[\"png\"] -O2 -o hello.html --preload-file opengl_demo/data/qafoo.png
+
+emcc opengl_demo/src/glfw3_webgl2_ver.cpp -o hello.html -s USE_WEBGL2=1 -s USE_GLFW=3 -s WASM=1 -std=c++1z
+
+emcc ../../../LearnOpenGL/Main.cpp ../../../LearnOpenGL/OSEngine.cpp -I../../../../shared/Includes -I../../../../shared/Source -I../../../Includes -o hello.html -s USE_WEBGL2=1 -s USE_GLFW=3 -s WASM=1 -std=c++1z -s LLD_REPORT_UNDEFINED
+
+ --preload-file ../../../../shared@shared/Assets@Assets/textures@textures/Akko-Kagari.png
+
+
+ --preload-file ../../../../shared/Assets/textures/tile-floor.png --preload-file ../../../../shared/Assets/textures/tile-floor-specular.png ../../../../shared/Assets/textures/wooden-crate-face.png --preload-file ../../../../shared/Assets/textures/wooden-crate-face-specular.png

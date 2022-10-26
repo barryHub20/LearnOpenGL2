@@ -1,16 +1,16 @@
 #include "Utility.h"
+// texture loading
+#include <STB/stb_image.h>
 
 string fileToShaderString(string filename)
 {
 	string output = "";
 	fstream inputFile(filename.c_str(), fstream::in);
-
 	if (!inputFile.is_open())
 	{
 		LogWarn("Failed to open file!");
 		return "";
 	}
-
 	string aLine;
 	while (getline(inputFile, aLine))
 	{
@@ -23,8 +23,7 @@ string fileToShaderString(string filename)
 
 int loadShader(string sourceFile, string shaderType, unsigned int& shaderObject)
 {
-#ifdef PLATFORM_WINDOWS
-	// load shader from external file
+#if defined(PLATFORM_WINDOWS) || defined(__EMSCRIPTEN__)
 	string shaderSource = fileToShaderString(sourceFile);
 	const char* shaderSourceCStr = shaderSource.c_str();
 #elif PLATFORM_ANDROID
@@ -48,7 +47,7 @@ int loadShader(string sourceFile, string shaderType, unsigned int& shaderObject)
 		LogWarn(shaderType + " is not a recognised shader type");
 	}
 
-#ifdef PLATFORM_WINDOWS
+#if defined(PLATFORM_WINDOWS) || defined(__EMSCRIPTEN__)
 	glShaderSource(shaderObject, 1, &shaderSourceCStr, NULL);
 #elif PLATFORM_ANDROID
     glShaderSource(shaderObject, 1, &source, &iSize);
@@ -154,7 +153,7 @@ void generateTexture(string src, unsigned int& texture)
 
 void LogInfo(string log)
 {
-#ifdef PLATFORM_WINDOWS
+#if defined(PLATFORM_WINDOWS) || defined(__EMSCRIPTEN__)
 	cout << "Info: " << log << endl;
 #elif PLATFORM_ANDROID
     LOGI(log.c_str());
@@ -163,7 +162,7 @@ void LogInfo(string log)
 
 void LogWarn(string log)
 {
-#ifdef PLATFORM_WINDOWS
+#if defined(PLATFORM_WINDOWS) || defined(__EMSCRIPTEN__)
 	cout << "WARN: " << log << endl;
 #elif PLATFORM_ANDROID
 	LOGW(log.c_str());

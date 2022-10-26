@@ -5,12 +5,9 @@ GLFWwindow* OSEngine::window = NULL;
 void OSEngine::initGlfw()
 {
 	glfwInit();
-	// set OpenGL ver
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-	// core profile: excudes backwards-compatible features we no longer need
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	// set OpenGL ver (WebGL 2.0)
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 }
 
 int OSEngine::createWindow()
@@ -18,22 +15,12 @@ int OSEngine::createWindow()
 	window = glfwCreateWindow(windowsWidth, windowsHeight, "LearnOpenGL", NULL, NULL);
 	if (window == NULL)
 	{
-		LogWarn("Failed to create GLFW window");
+		printf("Failed to create GLFW window\n");
 		terminateOpenGL();
 		return 0;
 	}
 	glfwMakeContextCurrent(window);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);	// register callback for on windows resize event
-	return 1;
-}
-
-int OSEngine::initGlad()
-{
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	{
-		LogWarn("Failed to initialize GLAD");
-		return 0;
-	}
 	return 1;
 }
 
@@ -44,8 +31,8 @@ void OSEngine::createViewport()
 
 void OSEngine::initInput()
 {
-	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-	glfwSetCursorPosCallback(window, mouse_callback);
+	/*glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetCursorPosCallback(window, mouse_callback);*/
 }
 
 void OSEngine::initOpenGLSettings()
@@ -62,32 +49,39 @@ void OSEngine::initOpenGLSettings()
 	glFrontFace(GL_CW);
 }
 
+void OSEngine::loopCallback()
+{
+	OSEngine::instance()->mainLoop();
+}
+
+void OSEngine::mainLoop()
+{
+	// delta time
+	float currFrame = glfwGetTime();
+	deltaTime = currFrame - lastFrame;
+	lastFrame = currFrame;
+
+	// input
+	processInput(window);
+
+	// engine update
+	Engine::instance()->Update(inputList, deltaTime);
+	Engine::instance()->Draw();
+
+	// read: double buffers to prevent flickering issues due to physical constraints of drawing a buffer to screen
+	// resulting in flickering
+	glfwSwapBuffers(window);
+
+	// check if events triggered (inputs etc), then updates windows state and activate callbacks
+	glfwPollEvents();
+}
+
 void OSEngine::renderLoop()
 {
 	// OSEngine vars
 	lastFrame = glfwGetTime();
 
-	while (!glfwWindowShouldClose(window))
-	{
-		// delta time
-		float currFrame = glfwGetTime();
-		deltaTime = currFrame - lastFrame;
-		lastFrame = currFrame;
-
-		// input
-		processInput(window);
-
-		// engine update
-		Engine::instance()->Update(inputList, deltaTime);
-		Engine::instance()->Draw();
-
-		// read: double buffers to prevent flickering issues due to physical constraints of drawing a buffer to screen
-		// resulting in flickering
-		glfwSwapBuffers(window);
-
-		// check if events triggered (inputs etc), then updates windows state and activate callbacks
-		glfwPollEvents();
-	}
+	emscripten_set_main_loop(loopCallback, 0, true);
 }
 
 int OSEngine::terminateOpenGL()
@@ -132,10 +126,10 @@ void OSEngine::processInput(GLFWwindow* window)
 	}
 
 	// process inputs
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+	/*if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 	{
 		glfwSetWindowShouldClose(window, true);
-	}
+	}*/
 }
 
 void OSEngine::mouse_callback(GLFWwindow* window, double xpos, double ypos)
@@ -172,7 +166,6 @@ void OSEngine::Init()
 {
 	initGlfw();
 	createWindow();
-	initGlad();
 	createViewport();
 	initInput();
 	initOpenGLSettings();
