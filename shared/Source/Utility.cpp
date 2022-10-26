@@ -6,13 +6,11 @@ string fileToShaderString(string filename)
 {
 	string output = "";
 	fstream inputFile(filename.c_str(), fstream::in);
-
 	if (!inputFile.is_open())
 	{
 		LogWarn("Failed to open file!");
 		return "";
 	}
-
 	string aLine;
 	while (getline(inputFile, aLine))
 	{
@@ -26,7 +24,6 @@ string fileToShaderString(string filename)
 int loadShader(string sourceFile, string shaderType, unsigned int& shaderObject)
 {
 #if defined(PLATFORM_WINDOWS) || defined(__EMSCRIPTEN__)
-	// load shader from external file
 	string shaderSource = fileToShaderString(sourceFile);
 	const char* shaderSourceCStr = shaderSource.c_str();
 #elif PLATFORM_ANDROID
