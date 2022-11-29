@@ -259,9 +259,9 @@ Mesh* MeshBuilder::bindInterleavedBuffers(vector<float>& vertices, vector<int>& 
     glEnableVertexAttribArray(2);
 
     // unbind
+    glBindVertexArray(0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindVertexArray(0);	// !unbind last! Or else it will store the unbinded EBO (glBindBuffer GL_ELEMENT_ARRAY_BUFFER as 0)!
 
     return new Mesh(VBO, EBO, VAO, indices.size());
 }

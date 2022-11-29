@@ -54,9 +54,6 @@ void GameObject::Draw(SHADER_TYPES shaderType)
 	// bind VAO
 	glBindVertexArray(MeshBuilder::instance()->getMesh(meshType)->getVAO());
 
-	// bind EBO
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, MeshBuilder::instance()->getMesh(meshType)->getEBO());
-
 	// uniforms (transformation)
 	ShaderManager::instance()->setUniformMatrix4fv(shaderType, "model", transformMat);
 	ShaderManager::instance()->setUniformMatrix4fv(shaderType, "normalMat", normalMat);

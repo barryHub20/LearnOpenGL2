@@ -121,7 +121,6 @@ void SceneLightMap::DrawFloor(float floorY, MAT_TYPES matType)
 	glm::mat4 normalMat = glm::transpose(glm::inverse(transformMat));
 
 	glBindVertexArray(MeshBuilder::instance()->getMesh(MESH_QUAD_INFINITE_FLOOR)->getVAO());
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, MeshBuilder::instance()->getMesh(MESH_QUAD_INFINITE_FLOOR)->getEBO());
 
 	ShaderManager::instance()->setUniformMatrix4fv(SHADER_LIGHT_MAP, "model", transformMat);
 	ShaderManager::instance()->setUniformMatrix4fv(SHADER_LIGHT_MAP, "normalMat", normalMat);
@@ -139,7 +138,6 @@ void SceneLightMap::DrawAxes(float pitch, float yaw, MAT_TYPES colorMat)
 	transformMat = glm::scale(transformMat, axesScale);
 
 	glBindVertexArray(MeshBuilder::instance()->getMesh(MESH_LINE)->getVAO());
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, MeshBuilder::instance()->getMesh(MESH_LINE)->getEBO());
 
 	ShaderManager::instance()->setUniformMatrix4fv(SHADER_COLOR, "model", transformMat);
 	MaterialBuilder::instance()->LoadMaterial(colorMat);
